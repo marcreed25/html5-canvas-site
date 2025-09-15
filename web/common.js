@@ -66,9 +66,6 @@ class Button {
         let textX = this.x + (this.width / 2) - (this.textWidth / 2);
         let textY = this.y + (this.height / 2) - (this.textHeight / 2);
 
-        console.log('rend textX=' + textX);
-        console.log('rend texY=' + textY);
-
         this.ctx.fillText(this.text, textX, textY);
     }
 
