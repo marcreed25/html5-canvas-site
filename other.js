@@ -1,3 +1,6 @@
+import {onInitPage, onDrawPage, initPage, drawPage, Button, isCursorInsideButton}
+from './common.js';
+
 var canvas = document.getElementById("canvas");
 
 // Match resolution of canvas to window dimensions
@@ -6,57 +9,27 @@ canvas.height = window.innerHeight;
 
 var ctx = canvas.getContext("2d");
 
-class Button {
-
-    constructor(text, x, y, width, height, hue, saturation,
-            lightness) {
-        this.text = text;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        ctx.textBaseline = 'top';
-        this.hue = hue;
-        this.saturation = saturation;
-        this.lightness = lightness;
-    }
-
-    draw() {
-        ctx.fillStyle = `hsl(${this.hue}, ${this.saturation}, ${this.lightness})`;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.fillStyle = "white";
-        ctx.font = "50px Arial";
-        ctx.fillText(this.text, this.x + 5, this.y + 5);
-    }
-
-}
-
 var btn = undefined;
 
-function initPage() {
+onInitPage(() => {
     let btnWidth = 300;
     let btnHeight = 100;
     let btnX = (canvas.width / 2) - (btnWidth / 2);
     let btnY = (canvas.height / 2) - (btnHeight / 2);
-    btn = new Button('Return', btnX, btnY, btnWidth, btnHeight,
+    btn = new Button(ctx, 'Return', btnX, btnY, btnWidth, btnHeight,
         '0', '0%', '50%'
     );
-}
+});
 
-function drawPage() {
+onDrawPage(() => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "blue";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     btn.draw();
-}
+});
 
 initPage();
 drawPage();
-
-function isCursorInsideButton(mx, my, btnX, btnY, btnWidth, btnHeight) {
-    return mx >= btnX && mx <= btnX + btnWidth &&
-            my >= btnY && my <= btnY + btnHeight;
-}
 
 canvas.addEventListener('mousedown', function(e) {
     let mx = e.clientX;
@@ -76,10 +49,3 @@ canvas.addEventListener('mousedown', function(e) {
         }, 100);
     }
 })
-
-window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    initPage();
-    drawPage();
-});
