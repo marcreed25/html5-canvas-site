@@ -1,2 +1,2 @@
-# html5-canvas-page
-Creating a web page using HTML5 Canvas instead of CSS
+# html5-canvas-site
+Creating a website using HTML5 Canvas instead of CSS
