@@ -31,13 +31,17 @@ class Button {
 
 }
 
-let btnWidth = 300;
-let btnHeight = 100;
-let btnX = (canvas.width / 2) - (btnWidth / 2);
-let btnY = (canvas.height / 2) - (btnHeight / 2);
-var btn = new Button('Hello world!', btnX, btnY, btnWidth, btnHeight,
-    '0', '0%', '50%'
-);
+var btn = undefined;
+
+function initPage() {
+    let btnWidth = 300;
+    let btnHeight = 100;
+    let btnX = (canvas.width / 2) - (btnWidth / 2);
+    let btnY = (canvas.height / 2) - (btnHeight / 2);
+    btn = new Button('Hello world!', btnX, btnY, btnWidth, btnHeight,
+        '0', '0%', '50%'
+    );
+}
 
 function drawPage() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -46,6 +50,7 @@ function drawPage() {
     btn.draw();
 }
 
+initPage();
 drawPage();
 
 function isCursorInsideButton(mx, my, btnX, btnY, btnWidth, btnHeight) {
@@ -67,3 +72,10 @@ canvas.addEventListener('mousedown', function(e) {
         }, 100);
     }
 })
+
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initPage();
+    drawPage();
+});
