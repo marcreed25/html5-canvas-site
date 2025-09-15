@@ -57,11 +57,13 @@ canvas.addEventListener('mousedown', function(e) {
     let mx = e.clientX;
     let my = e.clientY;
 
-    console.log('x: ' + mx);
-    console.log('y: ' + my);
-
     if (isCursorInsideButton(mx, my, btn.x, btn.y, btn.width, btn.height)) {
         btn.lightness = '26.7%';
         drawPage();
+
+        setTimeout(function () {
+            btn.lightness = '50%';
+            drawPage();
+        }, 100);
     }
 })
