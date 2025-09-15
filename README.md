@@ -6,7 +6,11 @@ NOTE: Because of CORS, requires hosting on an Apache server, eg using XAMPP.
 
 ## How it looks and behaves
 
-...
+![](screenshots/1st_page.png "")
+
+![](screenshots/2nd_page.png "")
+
+![](screenshots/smaller.png "")
 
 ## Conclusion
 
