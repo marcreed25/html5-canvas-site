@@ -29,8 +29,15 @@ class Button {
         this.ctx.fillStyle = `hsl(${this.hue}, ${this.saturation}, ${this.lightness})`;
         this.ctx.fillRect(this.x, this.y, this.width, this.height);
         this.ctx.fillStyle = "white";
+
         this.ctx.font = "50px Arial";
-        this.ctx.fillText(this.text, this.x + 5, this.y + 5);
+        // This relies on the font size being set
+        let textDimensions = this.ctx.measureText(this.text);
+        let textWidth = textDimensions.width;
+        let textHeight = textDimensions.emHeightDescent;
+        let textX = this.x + (this.width / 2) - (textWidth / 2);
+        let textY = this.y + (this.height / 2) - (textHeight / 2);
+        this.ctx.fillText(this.text, textX, textY);
     }
 
 }
