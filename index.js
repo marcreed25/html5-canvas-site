@@ -35,3 +35,20 @@ let btnX = (canvas.width / 2) - (btnWidth / 2);
 let btnY = (canvas.height / 2) - (btnHeight / 2);
 var btn = new Button('Hello world!', btnX, btnY, btnWidth, btnHeight);
 btn.draw();
+
+function isCursorInsideButton(mx, my, btnX, btnY, btnWidth, btnHeight) {
+    return mx >= btnX && mx <= btnX + btnWidth &&
+            my >= btnY && my <= btnY + btnHeight;
+}
+
+canvas.addEventListener('mousedown', function(e) {
+    let mx = e.clientX;
+    let my = e.clientY;
+
+    console.log('x: ' + mx);
+    console.log('y: ' + my);
+
+    if (isCursorInsideButton(mx, my, btn.x, btn.y, btn.width, btn.height)) {
+        alert('Inside!');
+    }
+})
