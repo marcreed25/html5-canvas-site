@@ -38,7 +38,7 @@ function initPage() {
     let btnHeight = 100;
     let btnX = (canvas.width / 2) - (btnWidth / 2);
     let btnY = (canvas.height / 2) - (btnHeight / 2);
-    btn = new Button('Hello world!', btnX, btnY, btnWidth, btnHeight,
+    btn = new Button('Return', btnX, btnY, btnWidth, btnHeight,
         '0', '0%', '50%'
     );
 }
@@ -71,7 +71,7 @@ canvas.addEventListener('mousedown', function(e) {
             drawPage();
 
             setTimeout(function () {
-                window.location.href = 'other.html';
+                window.location.href = 'index.html';
             }, 100);
         }, 100);
     }
