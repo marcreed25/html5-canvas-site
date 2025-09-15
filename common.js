@@ -17,7 +17,7 @@ function calculateTextDimensions(font, text) {
     // This relies on the font size being set
     let textDimensions = ctx.measureText(text);
     let width = textDimensions.width;
-    let height = textDimensions.emHeightAscent;
+    let height = textDimensions.fontBoundingBoxAscent + textDimensions.fontBoundingBoxDescent;
     
     element.remove();
 
