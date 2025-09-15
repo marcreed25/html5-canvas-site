@@ -6,11 +6,11 @@ NOTE: Because of CORS, requires hosting on an Apache server, eg using XAMPP.
 
 ## How it looks and behaves
 
-![](screenshots/1st_page.png "")
+<img src="screenshots/1st_page.png" width="600">
 
-![](screenshots/2nd_page.png "")
+<img src="screenshots/2nd_page.png" width="600">
 
-![](screenshots/smaller.png "")
+<img src="screenshots/smaller.png" width="300">
 
 ## Conclusion
 
