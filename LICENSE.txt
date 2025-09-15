@@ -1,0 +1,4 @@
+Free for all uses that are not military or otherwise likely to be evil.
+
+Any software that is based on this should include the above conditions in its
+licensing and may not contradict them.
