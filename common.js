@@ -9,13 +9,43 @@ function onDrawPage(func) {
     drawPage = func;
 }
 
+function calculateTextDimensions(font, text) {
+    let element = document.createElement('canvas');
+    let ctx = element.getContext("2d");
+
+    ctx.font = font;
+    // This relies on the font size being set
+    let textDimensions = ctx.measureText(text);
+    let width = textDimensions.width;
+    let height = textDimensions.emHeightAscent;
+    
+    element.remove();
+
+    return [width, height];
+}
+
+function calculateButtonBoundsBasedOnText(textWidth, textHeight) {
+    // Calculate button dimensions based on text dimensions
+    let width = textWidth + 20;
+    let height = textHeight + 20;
+
+    // Position button based on canvas and button dimensions
+    let x = (canvas.width / 2) - (width / 2);
+    let y = (canvas.height / 2) - (height / 2);
+
+    return [x, y, width, height];
+}
+
 class Button {
 
-    constructor(ctx, text, x, y, width, height, hue, saturation,
-            lightness) {
+    constructor(ctx, text, font, textWidth, textHeight, x, y, width, height,
+            hue, saturation, lightness) {
         this.ctx = ctx;
         ctx.textBaseline = 'top';
         this.text = text;
+        this.font = font;
+        this.textWidth = textWidth;
+        this.textHeight = textHeight;
         this.x = x;
         this.y = y;
         this.width = width;
@@ -26,17 +56,19 @@ class Button {
     }
 
     draw() {
+        // Draw the button
         this.ctx.fillStyle = `hsl(${this.hue}, ${this.saturation}, ${this.lightness})`;
         this.ctx.fillRect(this.x, this.y, this.width, this.height);
-        this.ctx.fillStyle = "white";
 
-        this.ctx.font = "50px Arial";
-        // This relies on the font size being set
-        let textDimensions = this.ctx.measureText(this.text);
-        let textWidth = textDimensions.width;
-        let textHeight = textDimensions.emHeightDescent;
-        let textX = this.x + (this.width / 2) - (textWidth / 2);
-        let textY = this.y + (this.height / 2) - (textHeight / 2);
+        // Draw the text inside the button
+        this.ctx.fillStyle = "white";
+        this.ctx.font = this.font;
+        let textX = this.x + (this.width / 2) - (this.textWidth / 2);
+        let textY = this.y + (this.height / 2) - (this.textHeight / 2);
+
+        console.log('rend textX=' + textX);
+        console.log('rend texY=' + textY);
+
         this.ctx.fillText(this.text, textX, textY);
     }
 
@@ -54,6 +86,7 @@ window.addEventListener("resize", () => {
     drawPage();
 });
 
-//alert('Hi'); // TODO remove
-
-export {onInitPage, onDrawPage, initPage, drawPage, Button, isCursorInsideButton};
+export {
+    onInitPage, onDrawPage, initPage, drawPage, calculateTextDimensions,
+    calculateButtonBoundsBasedOnText, Button, isCursorInsideButton
+};

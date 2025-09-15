@@ -1,4 +1,5 @@
-import {onInitPage, onDrawPage, initPage, drawPage, Button, isCursorInsideButton}
+import {onInitPage, onDrawPage, initPage, drawPage, calculateTextDimensions,
+    calculateButtonBoundsBasedOnText, Button, isCursorInsideButton}
 from './common.js';
 
 var canvas = document.getElementById("canvas");
@@ -12,13 +13,15 @@ var ctx = canvas.getContext("2d");
 var btn = undefined;
 
 onInitPage(() => {
-    let btnWidth = 300;
-    let btnHeight = 100;
-    let btnX = (canvas.width / 2) - (btnWidth / 2);
-    let btnY = (canvas.height / 2) - (btnHeight / 2);
-    btn = new Button(ctx, 'Return', btnX, btnY, btnWidth, btnHeight,
-        '0', '0%', '50%'
-    );
+    let font = '50px Arial';
+    let text = 'Return';
+    let [textWidth, textHeight] = calculateTextDimensions(font, text);
+    let [btnX, btnY, btnWidth, btnHeight] = calculateButtonBoundsBasedOnText(textWidth, textHeight);
+
+    // Create button
+    btn = new Button(ctx, text, font, textWidth, textHeight,
+        btnX, btnY, btnWidth, btnHeight,
+        '0', '0%', '50%');
 });
 
 onDrawPage(() => {
