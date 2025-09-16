@@ -11,7 +11,7 @@ function onDrawPage(func) {
 
 function calculateTextDimensions(font, text) {
     let element = document.createElement('canvas');
-    let ctx = element.getContext("2d");
+    let ctx = element.getContext('2d');
 
     ctx.font = font;
     // This relies on the font size being set
@@ -61,7 +61,7 @@ class Button {
         this.ctx.fillRect(this.x, this.y, this.width, this.height);
 
         // Draw the text inside the button
-        this.ctx.fillStyle = "white";
+        this.ctx.fillStyle = 'white';
         this.ctx.font = this.font;
         let textX = this.x + (this.width / 2) - (this.textWidth / 2);
         let textY = this.y + (this.height / 2) - (this.textHeight / 2);
@@ -76,7 +76,7 @@ function isCursorInsideButton(mx, my, btnX, btnY, btnWidth, btnHeight) {
             my >= btnY && my <= btnY + btnHeight;
 }
 
-window.addEventListener("resize", () => {
+window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     initPage();

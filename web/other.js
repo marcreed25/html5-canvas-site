@@ -2,13 +2,13 @@ import {onInitPage, onDrawPage, initPage, drawPage, calculateTextDimensions,
     calculateButtonBoundsBasedOnText, Button, isCursorInsideButton}
 from './common.js';
 
-var canvas = document.getElementById("canvas");
+var canvas = document.getElementById('canvas');
 
 // Match resolution of canvas to window dimensions
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-var ctx = canvas.getContext("2d");
+var ctx = canvas.getContext('2d');
 
 var btn = undefined;
 
@@ -26,7 +26,7 @@ onInitPage(() => {
 
 onDrawPage(() => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = 'blue';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     btn.draw();
 });
